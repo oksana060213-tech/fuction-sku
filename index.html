@@ -2,8 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Роли SKU | Стратегия ассортимента · Сант Оноре</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <title>Ценовая архитектура и роли SKU | Система управления ассортиментом</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -13,10 +13,10 @@
         }
 
         body {
-            background: #f7f3ed;
+            background: #f5f0ea;
             font-family: 'Inter', sans-serif;
             padding: 2rem 1.5rem;
-            color: #1f2a2e;
+            color: #1e292f;
         }
 
         .container {
@@ -24,304 +24,289 @@
             margin: 0 auto;
         }
 
-        /* Главный заголовок */
-        .hero {
+        .page-header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
-        .hero h1 {
-            font-size: 2.2rem;
+        .page-header h1 {
+            font-size: 2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #2c2b28, #8b5a3e);
+            background: linear-gradient(135deg, #2c3a2f, #8b5a3e);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.02em;
         }
-        .hero p {
+        .page-header p {
             color: #6f5a48;
             font-weight: 500;
-            margin-top: 0.5rem;
-            font-size: 1.05rem;
+            margin-top: 0.3rem;
         }
 
-        /* правило */
-        .rule-card {
-            background: #2b2b28;
-            color: #fef2e4;
-            border-radius: 36px;
-            padding: 1.8rem 2rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 12px 18px -8px rgba(0,0,0,0.2);
+        .blocks-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
-        .rule-card h2 {
-            font-size: 1.6rem;
+
+        .card {
+            background: white;
+            border-radius: 32px;
+            padding: 1.6rem 2rem;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+            border: 1px solid #eedbcb;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
             font-weight: 700;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 0.8rem;
+            gap: 0.5rem;
+            border-left: 5px solid #b87a4a;
+            padding-left: 1rem;
         }
-        .rule-card p {
-            font-size: 1rem;
-            line-height: 1.4;
-            opacity: 0.9;
+        .card-title i {
+            color: #b87a4a;
         }
 
-        /* сетка ролей */
-        .roles-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.8rem;
-            margin: 2rem 0 2.5rem;
-        }
-        .role-card {
-            flex: 1 1 280px;
-            background: white;
-            border-radius: 28px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border: 1px solid #f0e2d4;
-            transition: 0.2s;
-        }
-        .role-card:hover {
-            transform: translateY(-4px);
-            border-color: #cfa87e;
-        }
-        .role-icon {
-            font-size: 2.2rem;
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
             margin-bottom: 1rem;
         }
-        .role-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: #5c3f2a;
+        .info-table th, .info-table td {
+            padding: 0.8rem 0.6rem;
+            text-align: left;
+            border-bottom: 1px solid #f0e0d2;
+            vertical-align: top;
         }
-        .role-signs {
-            list-style: none;
+        .info-table th {
+            background: #faf1e4;
+            font-weight: 700;
+            color: #4b3827;
+            width: 30%;
+        }
+        .badge-segment {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .badge-low { background: #e2e6cf; color: #5a7142; }
+        .badge-mid { background: #f9e5c1; color: #be7c4a; }
+        .badge-high { background: #f2dfd0; color: #9a5e38; }
+
+        .role-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .role-item {
+            background: #fefaf5;
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            border-left: 4px solid #b87a4a;
+        }
+        .role-name {
+            font-weight: 800;
+            font-size: 1rem;
+            display: inline-block;
+            margin-right: 0.5rem;
+            color: #2c3a2f;
+        }
+        .role-desc {
+            color: #4a3f36;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin-top: 0.2rem;
+        }
+        .highlight-model {
+            background: #2e3b32;
+            color: #f7e5d3;
+            padding: 0.8rem 1.2rem;
+            border-radius: 28px;
+            font-weight: 700;
+            margin: 0.8rem 0;
+            border-left: 5px solid #e9cda8;
+        }
+        .matrix-role {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fefaf5;
+            border-radius: 20px;
+            overflow: hidden;
             margin: 0.8rem 0;
         }
-        .role-signs li {
-            margin-bottom: 0.5rem;
+        .matrix-role th, .matrix-role td {
+            border: 1px solid #e8dbcf;
+            padding: 0.7rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .matrix-role th {
+            background: #f4ede5;
+            font-weight: 700;
+        }
+        .role-highlight {
+            background: #fef3e8;
+        }
+        .sign-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+        .sign-list li {
+            margin-bottom: 0.4rem;
             padding-left: 1.3rem;
             position: relative;
             font-size: 0.85rem;
-            font-weight: 500;
         }
-        .role-signs li:before {
+        .sign-list li:before {
             content: "▹";
             color: #b87a4a;
             position: absolute;
             left: 0;
         }
-        .role-example {
-            background: #fef5ec;
-            border-radius: 20px;
-            padding: 0.7rem 1rem;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #784e2c;
-        }
-        .question {
-            background: #f3ede7;
+        .footnote {
+            background: #fef5ea;
             border-radius: 24px;
-            padding: 0.7rem 1rem;
-            margin-top: 1rem;
+            padding: 0.8rem 1.2rem;
             font-size: 0.8rem;
-            font-style: italic;
+            color: #6b5a4a;
+            margin-top: 1rem;
         }
-
-        /* таблица анализа */
-        .analysis-section {
-            background: white;
-            border-radius: 32px;
-            padding: 1.8rem;
-            margin: 2rem 0;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-            border: 1px solid #eadbcb;
-        }
-        .analysis-section h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .matrix-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            margin: 1rem 0;
-        }
-        .matrix-table th, .matrix-table td {
-            border: 1px solid #e7dbcf;
-            padding: 0.8rem 0.8rem;
-            text-align: left;
-            vertical-align: top;
-        }
-        .matrix-table th {
-            background: #faf1e6;
-            font-weight: 700;
-            color: #4f3722;
-        }
-        .badge-role {
-            display: inline-block;
-            background: #e6d9ce;
-            border-radius: 40px;
-            padding: 0.2rem 0.7rem;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #64482e;
-        }
-        .highlight {
-            background: #fcf3e8;
-        }
-        .footer-note {
-            background: #f1ede8;
-            border-radius: 28px;
-            padding: 1.2rem 1.8rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-left: 5px solid #b87a4a;
-            margin-top: 1.5rem;
-        }
-
-        @media (max-width: 750px) {
-            body { padding: 1rem; }
-            .matrix-table th, .matrix-table td { padding: 0.5rem; font-size: 0.75rem; }
-            .role-title { font-size: 1.2rem; }
+        @media (max-width: 700px) {
+            .card { padding: 1.2rem; }
+            .info-table th, .info-table td { padding: 0.5rem; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="hero">
-        <h1>Роли SKU · Ассортиментная стратегия</h1>
-        <p>Как товары реально работают на бизнес (не по вкусу, а по прибыли и трафику)</p>
+    <div class="page-header">
+        <h1>Ценовая архитектура и роли SKU</h1>
+        <p>Система управления ассортиментом · цепочка «цена → сегмент → роль»</p>
     </div>
 
-    <!-- главное правило -->
-    <div class="rule-card">
-        <h2><i class="fas fa-ruler-combined"></i> Простое правило</h2>
-        <p><strong>Роль SKU определяется не вкусом или категорией, а задачей, которую этот товар выполняет для бизнеса.</strong> — генерация трафика, прибыли, статуса или удержание ниши.</p>
+    <div class="blocks-grid">
+        <!-- БЛОК 1: Целевая модель -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-chart-pie"></i> 1. Целевая модель распределения SKU
+            </div>
+            <div class="info-table">
+                <tr><th>Низкий сегмент</th><td><span class="badge-segment badge-low">20–30%</span> ассортимента</td></tr>
+                <tr><th>Средний сегмент</th><td><span class="badge-segment badge-mid">50–60%</span> ассортимента</td></tr>
+                <tr><th>Высокий сегмент</th><td><span class="badge-segment badge-high">15–25%</span> ассортимента</td></tr>
+            </table>
+            <div class="highlight-model">
+                <i class="fas fa-balance-scale"></i> <strong>Рекомендуемая сбалансированная модель:</strong> 25% низкий / 55% средний / 20% высокий – обеспечивает устойчивый рост, баланс трафика и маржи.
+            </div>
+            <div class="role-box" style="margin-top: 0.5rem;">
+                <strong><i class="fas fa-random"></i> Как выбирать модель под задачу бизнеса:</strong>
+                <ul class="sign-list" style="margin-top: 0.5rem;">
+                    <li><strong>Максимальный трафик / охват</strong> → увеличивают <strong>низкий сегмент</strong> (до 30–35%) – больше доступных позиций, но ниже маржинальность.</li>
+                    <li><strong>Максимальная прибыль / премиум</strong> → увеличивают <strong>высокий сегмент</strong> (до 25–30%) – выше средний чек, статус.</li>
+                    <li><strong>Устойчивый рост + баланс</strong> → <strong>25% / 55% / 20%</strong> – золотое сечение для кафе-кондитерской.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- БЛОК 2: Ориентиры по ширине сегмента и шагам -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-arrows-left-right"></i> 2. Ориентиры по ширине сегмента и шагам
+            </div>
+            <table class="info-table">
+                <tr><th>Низкий сегмент / ширина</th><td>ширина <strong>15–25%</strong> (от самой низкой до самой высокой цены внутри сегмента)</td></tr>
+                <tr><th>Средний сегмент / ширина</th><td>ширина <strong>20–35%</strong></td></tr>
+                <tr><th>Высокий сегмент / ширина</th><td>ширина <strong>10–20%</strong></td></tr>
+                <tr><th>Шаг между соседними позициями <br> (внутри одного сегмента)</th><td><strong>5–15%</strong> – плавный рост, без резких скачков</td></tr>
+                <tr><th>Шаг между сегментами <br> (низкий → средний, средний → высокий)</th><td><strong>20–40%</strong> – гость чётко видит переход на другой уровень цен</td></tr>
+            </table>
+            <div class="footnote">
+                <i class="fas fa-calculator"></i> <strong>Правило:</strong> минимальная цена среднего сегмента должна быть на 20–40% выше максимальной цены низкого сегмента. Аналогично – для перехода средний → высокий.
+            </div>
+        </div>
+
+        <!-- БЛОК 3: Роли SKU (расширенный список) -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-tags"></i> 3. Роли SKU (задачи товара для бизнеса)
+            </div>
+
+            <div class="role-list">
+                <div class="role-item">
+                    <div class="role-name">Ценовой якорь:</div>
+                    <div class="role-desc">Формирует нижнюю границу цены и помогает продавать более дорогие позиции.</div>
+                </div>
+                <div class="role-item">
+                    <div class="role-name">Генератор трафика:</div>
+                    <div class="role-desc">Привлекает гостей, высокий объём продаж, доступная цена, низкая чувствительность к повышению цены на 5%.</div>
+                </div>
+                <div class="role-item">
+                    <div class="role-name">Флагман:</div>
+                    <div class="role-desc">№1 по продажам, узнаваемый продукт, формирует лицо категории.</div>
+                </div>
+                <div class="role-item">
+                    <div class="role-name">Генератор прибыли:</div>
+                    <div class="role-desc">Высокая маржинальность, уникальный состав, гости готовы платить больше.</div>
+                </div>
+                <div class="role-item">
+                    <div class="role-name">Основной ассортимент:</div>
+                    <div class="role-desc">Формирует «костяк» меню, стабильные продажи, средняя прибыль.</div>
+                </div>
+                <div class="role-item">
+                    <div class="role-name">Премиальный SKU:</div>
+                    <div class="role-desc">Повышает средний чек и имидж бренда, статусный продукт.</div>
+                </div>
+                <div class="role-item">
+                    <div class="role-name">Нишевый SKU:</div>
+                    <div class="role-desc">Работает на отдельную аудиторию, расширяет ассортимент (пример: Джаганнат). Даже при невысоких продажах его важно сохранять для лояльности.</div>
+                </div>
+                <div class="role-item">
+                    <div class="role-name">Low impact SKU (товар с низким влиянием):</div>
+                    <div class="role-desc">Низкие продажи, низкая прибыль, нет уникального УТП. Если убрать — никто не заметит. Рекомендация: сокращать или заменять.</div>
+                </div>
+            </div>
+
+            <div class="role-box" style="margin-top: 0.5rem;">
+                <strong><i class="fas fa-lightbulb"></i> Практическое правило: роль определяется не вкусом, а вкладом в продажи и прибыль</strong>
+                <div class="matrix-role">
+                    <table style="width:100%; border-collapse: collapse;">
+                        <thead>
+                            <tr><th>Высокие продажи?</th><th>Высокая прибыль?</th><th>Роль</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="text-align:center;">✅ Да</td><td style="text-align:center;">❌ Нет</td><td><strong>Генератор трафика</strong></td></tr>
+                            <tr class="role-highlight"><td style="text-align:center;">✅ Да</td><td style="text-align:center;">✅ Да</td><td><strong>Флагман</strong></td></tr>
+                            <tr><td style="text-align:center;">❌ Нет</td><td style="text-align:center;">✅ Да</td><td><strong>Генератор прибыли</strong></td></tr>
+                            <tr><td style="text-align:center;">❌ Нет</td><td style="text-align:center;">❌ Нет</td><td><strong>Low impact SKU (товар с низким влиянием)</strong> – требует внимания</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 0.8rem; font-size: 0.8rem;"><i class="fas fa-info-circle"></i> <strong>Исключение из матрицы:</strong> <strong>Нишевый SKU</strong> может иметь низкие продажи, но высокую ценность для конкретной аудитории. Его роль определяется стратегически, а не только цифрами.</p>
+            </div>
+
+            <div style="margin-top: 1rem;">
+                <div><strong><i class="fas fa-question-circle"></i> Генератор трафика (чек-лист):</strong></div>
+                <ul class="sign-list">
+                    <li>высокий объём продаж</li>
+                    <li>доступная цена, знакомый вкус</li>
+                    <li>низкая чувствительность к цене → <strong>если поднять цену на 5%, продажи не падают</strong></li>
+                </ul>
+                <div><strong><i class="fas fa-gem"></i> Премиальный продукт:</strong> гость покупает не потому что дёшево, а потому что хочет лучший продукт (статус, сложный состав).</div>
+                <div style="margin-top: 0.5rem;"><strong><i class="fas fa-chart-simple"></i> Генератор прибыли:</strong> продажа 1 штуки даёт существенно больше средней прибыли (высокая маржа + уникальность).</div>
+                <div style="margin-top: 0.5rem;"><strong><i class="fas fa-heart"></i> Нишевый SKU:</strong> важен для удержания лояльной аудитории (например, вегетарианские десерты, диабетические сладости).</div>
+                <div style="margin-top: 0.5rem;"><strong><i class="fas fa-skull-crosswalk"></i> Low impact SKU:</strong> не приносит ни продаж, ни прибыли, ни лояльности. Первый кандидат на вывод из ассортимента.</div>
+            </div>
+        </div>
     </div>
 
-    <!-- 6 ролей (карточки) -->
-    <div class="roles-grid">
-        <!-- 1. Генератор трафика -->
-        <div class="role-card">
-            <div class="role-icon"><i class="fas fa-chart-line" style="color:#7c9f6e;"></i></div>
-            <div class="role-title">Генератор трафика</div>
-            <ul class="role-signs">
-                <li>Высокий объём продаж</li>
-                <li>Доступная цена</li>
-                <li>Знакомый вкус</li>
-                <li>Низкая эластичность спроса</li>
-            </ul>
-            <div class="role-example">🍰 Три молока · Медовик · Эклер ванильный</div>
-            <div class="question"><i class="fas fa-question-circle"></i> Если поднять цену на 5% — гости продолжат покупать? <strong>Да → трафиковый SKU</strong></div>
-        </div>
-
-        <!-- 2. Флагман -->
-        <div class="role-card">
-            <div class="role-icon"><i class="fas fa-flag-checkered" style="color:#cb8b4a;"></i></div>
-            <div class="role-title">Флагман</div>
-            <ul class="role-signs">
-                <li>№1 по продажам</li>
-                <li>Узнаваемый продукт</li>
-                <li>Формирует лицо категории</li>
-            </ul>
-            <div class="role-example">🏆 Торт «Три молока»</div>
-            <div class="question"><i class="fas fa-chart-simple"></i> Лидер продаж + высокая узнаваемость = флагман.</div>
-        </div>
-
-        <!-- 3. Генератор прибыли -->
-        <div class="role-card">
-            <div class="role-icon"><i class="fas fa-coins" style="color:#d9a13b;"></i></div>
-            <div class="role-title">Генератор прибыли</div>
-            <ul class="role-signs">
-                <li>Высокая маржинальность</li>
-                <li>Уникальный состав</li>
-                <li>Готовы платить больше</li>
-            </ul>
-            <div class="role-example">💎 Карамельный орех · Маковое поле · Зимняя вишня</div>
-            <div class="question"><i class="fas fa-coins"></i> Одна продажа даёт значительно выше средней прибыли → profit driver.</div>
-        </div>
-
-        <!-- 4. Премиальный продукт -->
-        <div class="role-card">
-            <div class="role-icon"><i class="fas fa-gem" style="color:#ab7b54;"></i></div>
-            <div class="role-title">Премиум / статус</div>
-            <ul class="role-signs">
-                <li>Высокая цена</li>
-                <li>Сложный состав / декор</li>
-                <li>Повышает средний чек</li>
-            </ul>
-            <div class="role-example">👑 Джанга · Сан-Себастьян · Три шоколада</div>
-            <div class="question"><i class="fas fa-crown"></i> Покупают ради лучшего продукта, а не потому что дёшево.</div>
-        </div>
-
-        <!-- 5. Ценовой якорь -->
-        <div class="role-card">
-            <div class="role-icon"><i class="fas fa-anchor" style="color:#5f8b6f;"></i></div>
-            <div class="role-title">Ценовой якорь</div>
-            <ul class="role-signs">
-                <li>Минимальная цена в категории</li>
-                <li>Делает остальные товары выгоднее</li>
-                <li>Привлекает внимание</li>
-            </ul>
-            <div class="role-example">⚓ Наполеон · 830 ₽</div>
-            <div class="question"><i class="fas fa-chart-line"></i> Самый доступный торт — остальные кажутся выгоднее.</div>
-        </div>
-
-        <!-- 6. Нишевый продукт -->
-        <div class="role-card">
-            <div class="role-icon"><i class="fas fa-users" style="color:#9c7c64;"></i></div>
-            <div class="role-title">Нишевый продукт</div>
-            <ul class="role-signs">
-                <li>Не всем, но важен для части аудитории</li>
-                <li>Закрывает специфический запрос</li>
-            </ul>
-            <div class="role-example">🌱 Джаганнат (вегетарианский)</div>
-            <div class="question"><i class="fas fa-leaf"></i> Низкие продажи, но лояльная аудитория.</div>
-        </div>
-    </div>
-
-    <!-- Практическая матрица анализа -->
-    <div class="analysis-section">
-        <h3><i class="fas fa-table-list"></i> Практическое правило: анализ по 4 показателям</h3>
-        <p style="margin-bottom: 1rem;">Сортируем SKU по <strong>продажам (шт), выручке, валовой прибыли и цене</strong>. Дальше роль определяется автоматически:</p>
-        
-        <table class="matrix-table">
-            <thead>
-                <tr><th>Высокие продажи?</th><th>Высокая прибыль?</th><th>Роль SKU</th><th>Пример (торты)</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>✅ Да</td><td>❌ Нет</td><td><span class="badge-role">Генератор трафика</span></td><td>Медовик, Швейцарский</td></tr>
-                <tr class="highlight"><td>✅ Да</td><td>✅ Да</td><td><span class="badge-role">Флагман</span></td><td>Три молока</td></tr>
-                <tr><td>❌ Нет</td><td>✅ Да</td><td><span class="badge-role">Генератор прибыли</span></td><td>Карамельный орех, Маковое поле, Зимняя вишня</td></tr>
-                <tr><td>❌ Нет</td><td>❌ Нет</td><td><span class="badge-role">Low‑impact / Нишевый</span></td><td>Джаганнат (малые продажи, закрывает нишу)</td></tr>
-            </tbody>
-        </table>
-        <div style="margin-top: 1.2rem; background:#faf1e6; border-radius: 24px; padding: 0.7rem 1.2rem;">
-            <i class="fas fa-chart-pie"></i> <strong>Вывод:</strong> товары с высокими продажами, но низкой прибылью — двигатель трафика. Товары с низкими продажами, но высокой прибылью — генераторы денег. Флагман совмещает и то, и другое.
-        </div>
-    </div>
-
-    <!-- Дополнительный блок: ценовые якоря и премиум -->
-    <div class="footer-note">
-        <i class="fas fa-lightbulb" style="margin-right: 10px; color:#c07d48;"></i> 
-        <strong>Для собственника и команды — простой тест:</strong> 
-        если продаётся много, но прибыль низкая — это трафик. 
-        Если продаётся редко, но с высокой маржой — это генератор прибыли. 
-        Ценовой якорь (Наполеон 830 ₽) — делает остальные цены выгоднее. 
-        Премиум (Джанга, Сан-Себастьян) — повышает средний чек и статус. 
-        Нишевый SKU (Джаганнат) — удерживает конкретную аудиторию.
-        <br><br>
-        <strong>📌 Итог для слайда:</strong> <em>«Не все товары должны приносить высокую маржу. Одни кормят трафиком, другие — прибылью. Задача — найти баланс».</em>
+    <div class="footnote" style="margin-top: 1rem; background: #fff6ed;">
+        <i class="fas fa-chart-line"></i> <strong>Алгоритм внедрения:</strong> сначала сортируем SKU по продажам (шт), выручке, валовой прибыли и цене → автоматически определяем роль по матрице «высокие продажи / высокая прибыль». После этого проектируем сегменты (низкий/средний/высокий) с учётом ширины 15–35% и шага между сегментами 20–40%. В итоге получаем прозрачную ценовую архитектуру, понятную гостю и управляемую для бизнеса.
     </div>
 </div>
 </body>
